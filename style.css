@@ -1,0 +1,368 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 90px 20px 20px; /* Padding-top untuk memberi ruang di bawah navbar */
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  
+  .data-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .data-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .data-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .data-box p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  #last-updated {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  #refresh-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #refresh-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Warna Dinamis untuk Suhu */
+  .temperature-cold {
+    background-color: #800080; /* Ungu */
+    color: #fff;
+  }
+  
+  .temperature-cool {
+    background-color: #007bff; /* Biru */
+    color: #fff;
+  }
+  
+  .temperature-warm {
+    background-color: #ffc107; /* Kuning */
+    color: #000;
+  }
+  
+  .temperature-hot {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+  }
+  
+  /* Warna Dinamis untuk Kelembapan */
+  .humidity-dry {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+  }
+  
+  .humidity-moderate {
+    background-color: #ffc107; /* Kuning */
+    color: #000;
+  }
+  
+  .humidity-optimal {
+    background-color: #007bff; /* Biru */
+    color: #fff;
+  }
+  
+  .humidity-humid {
+    background-color: #ffc107; /* Kuning */
+    color: #000;
+  }
+  
+  .humidity-very-humid {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+  }
+  
+  /* Navbar */
+  #navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    height: 60px; /* Tinggi navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Judul di kiri, waktu di kanan */
+    align-items: center;
+  }
+  
+  #navbar-title h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #007bff;
+  }
+  
+  /* Waktu Real-Time */
+  #real-time-clock {
+    text-align: right;
+  }
+  
+  #real-time-clock #time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block; /* Jam di baris terpisah */
+  }
+  
+  #real-time-clock #date {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    display: block; /* Tanggal di baris terpisah */
+  }
+  
+  /* Footer */
+  #footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+    z-index: 1000;
+  }
+  
+  /* Dark Mode Toggle */
+  #dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  #dark-mode-switch {
+    display: none;
+  }
+  
+  #dark-mode-label {
+    display: block;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #dark-mode-label .slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  #dark-mode-switch:checked + #dark-mode-label {
+    background-color: #007bff;
+  }
+  
+  #dark-mode-switch:checked + #dark-mode-label .slider {
+    transform: translateX(26px);
+  }
+  
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .container {
+    color: #ffffff;
+  }
+  
+  body.dark-mode #real-time-clock {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #ffffff;
+  }
+  
+  body.dark-mode #refresh-button {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  
+  body.dark-mode #refresh-button:hover {
+    background-color: #0056b3;
+  }
+  
+  body.dark-mode #navbar,
+  body.dark-mode #footer {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #ffffff;
+  }
+  
+  /* Warna teks di dalam data box saat dark mode */
+  body.dark-mode .data-box h2,
+  body.dark-mode .data-box p {
+    color: inherit; /* Tetap mengikuti warna dinamis */
+  }
+  
+  /* Pastikan warna dinamis tetap berlaku */
+  body.dark-mode .temperature-cold {
+    background-color: #800080; /* Ungu */
+    color: #fff;
+  }
+  
+  body.dark-mode .temperature-cool {
+    background-color: #007bff; /* Biru */
+    color: #fff;
+  }
+  
+  body.dark-mode .temperature-warm {
+    background-color: #ffc107; /* Kuning */
+    color: #000;
+  }
+  
+  body.dark-mode .temperature-hot {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+  }
+  
+  body.dark-mode .humidity-dry {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+  }
+  
+  body.dark-mode .humidity-moderate {
+    background-color: #ffc107; /* Kuning */
+    color: #000;
+  }
+  
+  body.dark-mode .humidity-optimal {
+    background-color: #007bff; /* Biru */
+    color: #fff;
+  }
+  
+  body.dark-mode .humidity-humid {
+    background-color: #ffc107; /* Kuning */
+    color: #000;
+  }
+  
+  body.dark-mode .humidity-very-humid {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+  }
+  
+/* Responsive Design untuk Mobile */
+@media (max-width: 768px) {
+    .container {
+      padding: 80px 15px 15px; /* Tambahkan padding di sisi kiri dan kanan */
+    }
+  
+    h1 {
+      font-size: 1.25rem; /* Perkecil ukuran judul di mobile */
+    }
+  
+    .data-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .data-box {
+      width: 90%; /* Lebarkan data box */
+      margin-bottom: 15px; /* Beri jarak antar data box */
+      padding: 15px; /* Tambahkan padding di dalam data box */
+    }
+  
+    .data-box h2 {
+      font-size: 1.25rem; /* Perkecil ukuran judul data box */
+    }
+  
+    .data-box p {
+      font-size: 1.5rem; /* Perkecil ukuran teks data */
+    }
+  
+    #refresh-button {
+      width: 100%; /* Lebarkan tombol refresh */
+      font-size: 0.9rem; /* Perkecil ukuran teks tombol */
+    }
+  
+    #navbar {
+      padding: 10px 15px; /* Tambahkan padding di sisi kiri dan kanan */
+      height: 50px; /* Tinggi navbar di mobile */
+    }
+  
+    #navbar-title h1 {
+      font-size: 1rem; /* Perkecil ukuran judul di navbar */
+    }
+  
+    #real-time-clock #time {
+      font-size: 0.9rem; /* Perkecil ukuran jam */
+    }
+  
+    #real-time-clock #date {
+      font-size: 0.7rem; /* Perkecil ukuran tanggal */
+    }
+  
+    #footer {
+      padding: 10px 15px; /* Tambahkan padding di sisi kiri dan kanan */
+      font-size: 0.8rem;
+    }
+  
+    #dark-mode-toggle {
+      bottom: 10px;
+      right: 15px; /* Geser sedikit ke kiri */
+    }
+  
+    #dark-mode-label {
+      width: 50px;
+      height: 28px;
+    }
+  
+    #dark-mode-label .slider {
+      width: 24px;
+      height: 24px;
+    }
+  
+    #dark-mode-switch:checked + #dark-mode-label .slider {
+      transform: translateX(22px);
+    }
+  }

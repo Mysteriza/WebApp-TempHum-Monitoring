@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IoT Monitoring - Temperature & Humidity</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="module" src="script.js" defer></script>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav id="navbar">
+            <div id="navbar-title">
+                <h1>Monitoring - Temperature & Humidity</h1>
+            </div>
+            <div id="real-time-clock">
+                <span id="time"></span>
+                <span id="date"></span>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Data Section -->
+            <div class="data-container">
+                <div class="data-box">
+                    <h2>Temperature</h2>
+                    <p id="temperature">-- °C</p>
+                </div>
+                <div class="data-box">
+                    <h2>Humidity</h2>
+                    <p id="humidity">-- %</p>
+                </div>
+            </div>
+
+            <!-- Last Updated -->
+            <p id="last-updated">Last Updated: --</p>
+
+            <!-- Refresh Button -->
+            <button id="refresh-button">Refresh Data</button>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>© <span id="current-year"></span> Mysteriza. All rights
+                reserved.</p>
+        </footer>
+
+        <!-- Dark Mode Switch -->
+        <div id="dark-mode-toggle">
+            <input type="checkbox" id="dark-mode-switch">
+            <label for="dark-mode-switch" id="dark-mode-label">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </body>
+</html>
