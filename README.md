@@ -3,6 +3,8 @@
 
 A simple real-time web-based monitoring system for temperature and humidity data collected from an ESP8266 with a DHT22 sensor, integrated with Blynk.
 
+## [Arduino Code | ESP8266 + DHT22 + Blynk](https://github.com/Mysteriza/DHT22-Blynk-Monitoring)
+
 ---
 
 ## Features
