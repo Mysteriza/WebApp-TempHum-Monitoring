@@ -1,20 +1,19 @@
-import config from "../config.js";
-
-const BLYNK_AUTH_TOKEN = config.BLYNK_AUTH_TOKEN;
-
+/**
+ * @param {string} pin
+ * @returns {Promise<string>}
+ */
 async function fetchBlynkData(pin) {
   try {
-    const response = await fetch(
-      `https://blynk.cloud/external/api/get?token=${BLYNK_AUTH_TOKEN}&${pin}`
-    );
+    const response = await fetch(`/api/blynk?pin=${pin}`);
+
     if (!response.ok) {
-      throw new Error(
-        `Failed to fetch data from pin ${pin}: ${response.statusText}`
-      );
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
-    return await response.text();
+
+    const data = await response.json();
+    return data.value;
   } catch (error) {
-    console.error(`Error fetching data from pin ${pin}:`, error);
+    console.error(`Error fetching data from backend:`, error);
     return null;
   }
 }
