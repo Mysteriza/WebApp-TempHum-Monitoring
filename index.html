@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+            content="A real-time IoT monitoring system for temperature and humidity using ESP8266 and Blynk.">
         <title>IoT Monitoring - Temperature & Humidity</title>
         <link rel="stylesheet" href="style.css">
         <script type="module" src="script.js" defer></script>
@@ -36,7 +38,8 @@
             <p id="last-updated">Last Updated: --</p>
 
             <!-- Refresh Button -->
-            <button id="refresh-button">Refresh Data</button>
+            <button id="refresh-button" aria-label="Refresh Data">Refresh
+                Data</button>
         </div>
 
         <!-- Footer -->
@@ -47,7 +50,8 @@
 
         <!-- Dark Mode Switch -->
         <div id="dark-mode-toggle">
-            <input type="checkbox" id="dark-mode-switch">
+            <input type="checkbox" id="dark-mode-switch"
+                aria-label="Toggle dark mode">
             <label for="dark-mode-switch" id="dark-mode-label">
                 <span class="slider"></span>
             </label>

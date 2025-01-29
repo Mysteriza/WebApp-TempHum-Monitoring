@@ -9,7 +9,6 @@ const timeElement = document.getElementById("time");
 const dateElement = document.getElementById("date");
 const darkModeSwitch = document.getElementById("dark-mode-switch");
 
-// Function to show a message
 function showMessage(message, isError = false) {
   const messageElement = document.createElement("div");
   messageElement.textContent = message;
@@ -46,7 +45,8 @@ function updateTemperatureColor(temperature) {
     "temperature-cold",
     "temperature-cool",
     "temperature-warm",
-    "temperature-hot"
+    "temperature-hot",
+    "temperature-error"
   );
 
   if (temperature < 20) {
@@ -68,7 +68,8 @@ function updateHumidityColor(humidity) {
     "humidity-moderate",
     "humidity-optimal",
     "humidity-humid",
-    "humidity-very-humid"
+    "humidity-very-humid",
+    "humidity-error"
   );
 
   if (humidity < 30) {
@@ -84,13 +85,26 @@ function updateHumidityColor(humidity) {
   }
 }
 
+let previousTemperature = null;
+let previousHumidity = null;
 // Function to fetch and update data
 async function fetchData() {
   try {
     const temperature = parseFloat(await fetchBlynkData("V0"));
     const humidity = parseFloat(await fetchBlynkData("V1"));
 
-    // Update DOM
+    // Cek jika data yang diterima null (ESP8266 offline)
+    if (temperature === null || humidity === null) {
+      throw new Error("ESP8266 is offline or invalid data"); // Tangkap jika data null
+    }
+
+    // Jika data tidak berubah, beri tahu pengguna bahwa tidak ada data baru
+    if (temperature === previousTemperature && humidity === previousHumidity) {
+      showMessage("No updates available!", true); // Tampilkan pesan jika data tidak berubah
+      return; // Tidak perlu update UI
+    }
+
+    // Update DOM jika data valid dan berbeda
     temperatureElement.textContent = `${temperature.toFixed(1)} °C`;
     humidityElement.textContent = `${humidity.toFixed(1)} %`;
     updateLastUpdated();
@@ -99,11 +113,25 @@ async function fetchData() {
     updateTemperatureColor(temperature);
     updateHumidityColor(humidity);
 
+    // Update previous values
+    previousTemperature = temperature;
+    previousHumidity = humidity;
+
     // Show success message
     showMessage("Data Updated!");
   } catch (error) {
     console.error("Error fetching data:", error);
-    showMessage("Failed to Update Data", true); // Show error message
+
+    // Jika ESP8266 offline atau data invalid, tampilkan pesan error dan ubah data menjadi NaN
+    temperatureElement.textContent = "NaN °C";
+    humidityElement.textContent = "NaN %";
+    showMessage("ESP8266 is offline. Unable to fetch data.", true); // Pesan error untuk offline
+
+    // Ubah warna menjadi abu-abu atau warna khusus untuk menunjukkan kesalahan
+    const temperatureBox = temperatureElement.parentElement;
+    const humidityBox = humidityElement.parentElement;
+    temperatureBox.classList.add("temperature-error"); // Tambahkan class error
+    humidityBox.classList.add("humidity-error"); // Tambahkan class error
   }
 }
 
