@@ -46,4 +46,4 @@ A simple real-time web-based monitoring system for temperature and humidity data
    ```
    cd WebApp-TempHum-Monitoring
    ```
-2. Then replace the Blynk token in assets/blynk.js with your own token.
+2. Then replace the Blynk token in config.js with your own token.
