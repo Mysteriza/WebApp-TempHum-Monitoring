@@ -9,23 +9,31 @@ const timeElement = document.getElementById("time");
 const dateElement = document.getElementById("date");
 const darkModeSwitch = document.getElementById("dark-mode-switch");
 
-function showMessage(message, isError = false) {
-  const messageElement = document.createElement("div");
-  messageElement.textContent = message;
-  messageElement.style.position = "fixed";
-  messageElement.style.bottom = "20px";
-  messageElement.style.left = "50%";
-  messageElement.style.transform = "translateX(-50%)";
-  messageElement.style.padding = "10px 20px";
-  messageElement.style.backgroundColor = isError ? "#dc3545" : "#007bff";
-  messageElement.style.color = "#fff";
-  messageElement.style.borderRadius = "5px";
-  messageElement.style.zIndex = "1000";
-  document.body.appendChild(messageElement);
+let messageElement = null;
+let previousTemperature = null;
+let previousHumidity = null;
 
-  // Hapus pesan setelah 3 detik
+// Function to show a temporary message
+function showMessage(message, isError = false) {
+  if (!messageElement) {
+    messageElement = document.createElement("div");
+    messageElement.style.position = "fixed";
+    messageElement.style.bottom = "20px";
+    messageElement.style.left = "50%";
+    messageElement.style.transform = "translateX(-50%)";
+    messageElement.style.padding = "10px 20px";
+    messageElement.style.color = "#fff";
+    messageElement.style.borderRadius = "5px";
+    messageElement.style.zIndex = "1000";
+    document.body.appendChild(messageElement);
+  }
+
+  messageElement.textContent = message;
+  messageElement.style.backgroundColor = isError ? "#dc3545" : "#007bff";
+  messageElement.style.display = "block";
+
   setTimeout(() => {
-    document.body.removeChild(messageElement);
+    messageElement.style.display = "none";
   }, 3000);
 }
 
@@ -85,53 +93,62 @@ function updateHumidityColor(humidity) {
   }
 }
 
-let previousTemperature = null;
-let previousHumidity = null;
-// Function to fetch and update data
-async function fetchData() {
+// Function to fetch sensor data
+async function getSensorData() {
   try {
     const temperature = parseFloat(await fetchBlynkData("V0"));
     const humidity = parseFloat(await fetchBlynkData("V1"));
 
-    // Cek jika data yang diterima null (ESP8266 offline)
-    if (temperature === null || humidity === null) {
-      throw new Error("ESP8266 is offline or invalid data"); // Tangkap jika data null
+    if (isNaN(temperature) || isNaN(humidity)) {
+      throw new Error("Invalid data received from ESP8266");
     }
 
-    // Jika data tidak berubah, beri tahu pengguna bahwa tidak ada data baru
+    return { temperature, humidity };
+  } catch (error) {
+    console.error("Error fetching sensor data:", error);
+    throw error;
+  }
+}
+
+// Function to update UI with sensor data
+function updateUI(temperature, humidity) {
+  temperatureElement.textContent = `${temperature.toFixed(1)} °C`;
+  humidityElement.textContent = `${humidity.toFixed(1)} %`;
+  updateLastUpdated();
+  updateTemperatureColor(temperature);
+  updateHumidityColor(humidity);
+}
+
+// Function to handle errors
+function handleError() {
+  temperatureElement.textContent = "NaN °C";
+  humidityElement.textContent = "NaN %";
+  showMessage("ESP8266 is offline. Unable to fetch data.", true);
+
+  const temperatureBox = temperatureElement.parentElement;
+  const humidityBox = humidityElement.parentElement;
+  temperatureBox.classList.add("temperature-error");
+  humidityBox.classList.add("humidity-error");
+}
+
+// Function to fetch and update data
+async function fetchData() {
+  try {
+    const { temperature, humidity } = await getSensorData();
+
     if (temperature === previousTemperature && humidity === previousHumidity) {
-      showMessage("No updates available!", true); // Tampilkan pesan jika data tidak berubah
-      return; // Tidak perlu update UI
+      showMessage("No updates available!", true);
+      return;
     }
 
-    // Update DOM jika data valid dan berbeda
-    temperatureElement.textContent = `${temperature.toFixed(1)} °C`;
-    humidityElement.textContent = `${humidity.toFixed(1)} %`;
-    updateLastUpdated();
+    updateUI(temperature, humidity);
 
-    // Update Colors
-    updateTemperatureColor(temperature);
-    updateHumidityColor(humidity);
-
-    // Update previous values
     previousTemperature = temperature;
     previousHumidity = humidity;
 
-    // Show success message
     showMessage("Data Updated!");
   } catch (error) {
-    console.error("Error fetching data:", error);
-
-    // Jika ESP8266 offline atau data invalid, tampilkan pesan error dan ubah data menjadi NaN
-    temperatureElement.textContent = "NaN °C";
-    humidityElement.textContent = "NaN %";
-    showMessage("ESP8266 is offline. Unable to fetch data.", true); // Pesan error untuk offline
-
-    // Ubah warna menjadi abu-abu atau warna khusus untuk menunjukkan kesalahan
-    const temperatureBox = temperatureElement.parentElement;
-    const humidityBox = humidityElement.parentElement;
-    temperatureBox.classList.add("temperature-error"); // Tambahkan class error
-    humidityBox.classList.add("humidity-error"); // Tambahkan class error
+    handleError();
   }
 }
 
@@ -155,7 +172,7 @@ function updateClock() {
 // Function to toggle dark mode
 function toggleDarkMode() {
   const isDarkMode = document.body.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", isDarkMode); // Simpan preferensi dark mode
+  localStorage.setItem("darkMode", isDarkMode);
 }
 
 // Check dark mode preference on page load
