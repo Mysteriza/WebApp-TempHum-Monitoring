@@ -1,10 +1,7 @@
-const BLYNK_AUTH_TOKEN = "INPUT_YOUR_TOKEN_HERE"; //change blynk auth token with your own
+import config from "../config.js";
 
-/**
- * Fetch data from Blynk API
- * @param {string} pin - Pin virtual di Blynk (contoh: V0, V1, V4)
- * @returns {Promise<string>} - Data dari Blynk
- */
+const BLYNK_AUTH_TOKEN = config.BLYNK_AUTH_TOKEN;
+
 async function fetchBlynkData(pin) {
   try {
     const response = await fetch(
