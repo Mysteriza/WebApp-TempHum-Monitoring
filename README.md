@@ -20,14 +20,13 @@ A simple real-time web-based monitoring system for temperature and humidity data
 
 ## Screenshots
 ### Light Mode
-<img src="https://github.com/user-attachments/assets/e5364565-b8b8-4395-ae56-a258c7ece672" alt="Light Mode" width="710" />
-<img src="https://github.com/user-attachments/assets/11930f31-dc9b-41ec-a68b-cd11c7394d9e" alt="Mobile Light Mode" width="200" />
+<img src="https://github.com/user-attachments/assets/81620df0-86e8-45f7-8c1c-de49a2c07bc3" alt="Light Mode" width="710" />
+<img src="https://github.com/user-attachments/assets/020ca4b7-f67e-4d07-a0de-2bbc0c26058b" alt="Mobile Light Mode" width="200" />
 
 ### Dark Mode
-<img src="https://github.com/user-attachments/assets/5f63c5aa-f846-4453-ba16-7f7aec29fdd8" alt="Dark Mode" width="710" />
-<img src="https://github.com/user-attachments/assets/91d0d3be-702a-44dd-b731-d0b368217d5e" alt="Mobile Dark Mode" width="200" />
+<img src="https://github.com/user-attachments/assets/4743a873-6854-4987-8ccc-ac2beb382b34" alt="Dark Mode" width="710" />
+<img src="https://github.com/user-attachments/assets/051e7a70-b8ce-43a0-97b3-7471c5c5ee49" alt="Mobile Dark Mode" width="200" />
 
-### Note : Blynk Auth Token is not implemented in the code, so the screenshot does not display any data.
 ---
 
 ## Technologies Used
