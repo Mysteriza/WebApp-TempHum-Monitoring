@@ -13,7 +13,6 @@ A simple real-time web-based monitoring system for temperature and humidity, col
 - Responsive Design 📱: Works seamlessly on desktop, tablet, and mobile.
 - Last Updated Timestamp ⏱: Displays the exact last refresh time (including seconds).
 - Manual Refresh Button 🔄: Instantly fetch new data with a single click.
-- Error Handling ⚠: Displays an alert if the Blynk API request fails or the ESP8266 is offline.
 - Smooth UI Animations ✨: Uses CSS transitions for a better user experience.
 
 
