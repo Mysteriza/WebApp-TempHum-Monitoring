@@ -24,35 +24,35 @@
         <div class="container">
             <!-- Data Section -->
             <div class="data-container">
-                <!-- Baris Pertama: Temperature & Humidity -->
+                <!-- First Row: Temperature & Humidity -->
                 <div class="row">
-                    <!-- Data Temperature -->
+                    <!-- Temperature Data -->
                     <div class="data-box">
                         <h2>Temperature</h2>
                         <p id="temperature">-- °C</p>
                     </div>
-                    <!-- Data Humidity -->
+                    <!-- Humidity Data -->
                     <div class="data-box">
                         <h2>Humidity</h2>
                         <p id="humidity">-- %</p>
                     </div>
                 </div>
 
-                <!-- Baris Kedua: Gas RAW & Gas Compensated -->
+                <!-- Second Row: Gas RAW & Gas Compensated -->
                 <div class="row">
-                    <!-- Data Gas (RAW) -->
+                    <!-- Gas (RAW) Data -->
                     <div class="data-box">
                         <h2>Gas (RAW)</h2>
                         <p id="gas-raw">--</p>
                     </div>
-                    <!-- Data Gas (Compensated) -->
+                    <!-- Gas (Compensated) Data -->
                     <div class="data-box">
                         <h2>Gas (Compensated)</h2>
                         <p id="gas-compensated">-- ppm</p>
                     </div>
                 </div>
 
-                <!-- Baris Ketiga: Air Quality Status -->
+                <!-- Third Row: Air Quality Status -->
                 <div class="row">
                     <div class="data-box">
                         <h2>Air Quality</h2>
@@ -69,27 +69,27 @@
                 Data</button>
         </div>
 
-        <!-- Tombol Info Global -->
+        <!-- Global Info Button -->
         <div id="info-button">
             <span class="info-icon">i</span>
         </div>
 
-        <!-- Modal Penjelasan -->
+        <!-- Info Modal -->
         <div id="info-modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Penjelasan Data</h2>
+                <h2>Data Explanation</h2>
                 <ul>
-                    <li><strong>Suhu (Temperature):</strong> Suhu ruangan dalam
-                        derajat Celsius.</li>
-                    <li><strong>Kelembapan (Humidity):</strong> Kelembapan udara
-                        dalam persen.</li>
-                    <li><strong>Gas (RAW):</strong> Nilai gas mentah dari sensor
-                        MQ-135.</li>
-                    <li><strong>Gas (Compensated):</strong> Nilai gas yang telah
-                        dikompensasi berdasarkan suhu dan kelembapan.</li>
-                    <li><strong>Kualitas Udara (Air Quality):</strong> Status
-                        kualitas udara berdasarkan nilai gas terkompensasi.</li>
+                    <li><strong>Temperature:</strong> Room temperature in
+                        degrees Celsius.</li>
+                    <li><strong>Humidity:</strong> Air humidity in
+                        percentage.</li>
+                    <li><strong>Gas (RAW):</strong> Raw gas value from the
+                        MQ-135 sensor.</li>
+                    <li><strong>Gas (Compensated):</strong> Gas value adjusted
+                        based on temperature and humidity.</li>
+                    <li><strong>Air Quality:</strong> Air quality status based
+                        on the compensated gas value.</li>
                 </ul>
             </div>
         </div>
