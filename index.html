@@ -24,13 +24,40 @@
         <div class="container">
             <!-- Data Section -->
             <div class="data-container">
-                <div class="data-box">
-                    <h2>Temperature</h2>
-                    <p id="temperature">-- °C</p>
+                <!-- Baris Pertama: Temperature & Humidity -->
+                <div class="row">
+                    <!-- Data Temperature -->
+                    <div class="data-box">
+                        <h2>Temperature</h2>
+                        <p id="temperature">-- °C</p>
+                    </div>
+                    <!-- Data Humidity -->
+                    <div class="data-box">
+                        <h2>Humidity</h2>
+                        <p id="humidity">-- %</p>
+                    </div>
                 </div>
-                <div class="data-box">
-                    <h2>Humidity</h2>
-                    <p id="humidity">-- %</p>
+
+                <!-- Baris Kedua: Gas RAW & Gas Compensated -->
+                <div class="row">
+                    <!-- Data Gas (RAW) -->
+                    <div class="data-box">
+                        <h2>Gas (RAW)</h2>
+                        <p id="gas-raw">--</p>
+                    </div>
+                    <!-- Data Gas (Compensated) -->
+                    <div class="data-box">
+                        <h2>Gas (Compensated)</h2>
+                        <p id="gas-compensated">-- ppm</p>
+                    </div>
+                </div>
+
+                <!-- Baris Ketiga: Air Quality Status -->
+                <div class="row">
+                    <div class="data-box">
+                        <h2>Air Quality</h2>
+                        <p id="air-quality-status">--</p>
+                    </div>
                 </div>
             </div>
 
@@ -42,11 +69,30 @@
                 Data</button>
         </div>
 
-        <!-- Footer -->
-        <footer id="footer">
-            <p>© <span id="current-year"></span> Mysteriza. All rights
-                reserved.</p>
-        </footer>
+        <!-- Tombol Info Global -->
+        <div id="info-button">
+            <span class="info-icon">i</span>
+        </div>
+
+        <!-- Modal Penjelasan -->
+        <div id="info-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Penjelasan Data</h2>
+                <ul>
+                    <li><strong>Suhu (Temperature):</strong> Suhu ruangan dalam
+                        derajat Celsius.</li>
+                    <li><strong>Kelembapan (Humidity):</strong> Kelembapan udara
+                        dalam persen.</li>
+                    <li><strong>Gas (RAW):</strong> Nilai gas mentah dari sensor
+                        MQ-135.</li>
+                    <li><strong>Gas (Compensated):</strong> Nilai gas yang telah
+                        dikompensasi berdasarkan suhu dan kelembapan.</li>
+                    <li><strong>Kualitas Udara (Air Quality):</strong> Status
+                        kualitas udara berdasarkan nilai gas terkompensasi.</li>
+                </ul>
+            </div>
+        </div>
 
         <!-- Dark Mode Switch -->
         <div id="dark-mode-toggle">
