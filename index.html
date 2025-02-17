@@ -5,15 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description"
             content="A real-time IoT monitoring system for temperature and humidity using ESP8266 and Blynk.">
-        <title>IoT Monitoring - Temperature & Humidity</title>
+        <title>IoT Monitoring</title>
+
+        <!-- Font Awesome CDN -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-..."
+            crossorigin="anonymous" />
+
+        <!-- Favicon Links -->
+        <link rel="apple-touch-icon" sizes="180x180"
+            href="assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32"
+            href="assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16"
+            href="assets/favicon-16x16.png">
+        <link rel="manifest" href="assets/site.webmanifest">
+
+        <!-- Stylesheet -->
         <link rel="stylesheet" href="style.css">
+
+        <!-- Script -->
         <script type="module" src="script.js" defer></script>
     </head>
     <body>
         <!-- Navbar -->
         <nav id="navbar">
             <div id="navbar-title">
-                <h1>Monitoring - Temperature & Humidity</h1>
+                <h1>Room Monitoring</h1>
             </div>
             <div id="real-time-clock">
                 <span id="time"></span>
@@ -21,41 +41,39 @@
             </div>
         </nav>
 
+        <!-- Main Content -->
         <div class="container">
             <!-- Data Section -->
             <div class="data-container">
-                <!-- First Row: Temperature & Humidity -->
+                <!-- Row 1: Temperature & Humidity -->
                 <div class="row">
-                    <!-- Temperature Data -->
                     <div class="data-box">
-                        <h2>Temperature</h2>
+                        <h2><i class="fas fa-thermometer-half"></i>
+                            Temperature</h2>
                         <p id="temperature">-- °C</p>
                     </div>
-                    <!-- Humidity Data -->
                     <div class="data-box">
-                        <h2>Humidity</h2>
+                        <h2><i class="fas fa-tint"></i> Humidity</h2>
                         <p id="humidity">-- %</p>
                     </div>
                 </div>
 
-                <!-- Second Row: Gas RAW & Gas Compensated -->
+                <!-- Row 2: Gas RAW & Gas Compensated -->
                 <div class="row">
-                    <!-- Gas (RAW) Data -->
                     <div class="data-box">
-                        <h2>Gas (RAW)</h2>
+                        <h2><i class="fas fa-filter"></i> Gas (RAW)</h2>
                         <p id="gas-raw">--</p>
                     </div>
-                    <!-- Gas (Compensated) Data -->
                     <div class="data-box">
-                        <h2>Gas (Compensated)</h2>
+                        <h2><i class="fas fa-filter"></i> Gas (Compensated)</h2>
                         <p id="gas-compensated">-- ppm</p>
                     </div>
                 </div>
 
-                <!-- Third Row: Air Quality Status -->
+                <!-- Row 3: Air Quality Status -->
                 <div class="row">
                     <div class="data-box">
-                        <h2>Air Quality</h2>
+                        <h2><i class="fas fa-wind"></i> Air Quality</h2>
                         <p id="air-quality-status">--</p>
                     </div>
                 </div>
@@ -65,16 +83,17 @@
             <p id="last-updated">Last Updated: --</p>
 
             <!-- Refresh Button -->
-            <button id="refresh-button" aria-label="Refresh Data">Refresh
-                Data</button>
+            <button id="refresh-button">
+                <i class="fas fa-sync"></i> Refresh Data
+            </button>
         </div>
 
         <!-- Global Info Button -->
         <div id="info-button">
-            <span class="info-icon">i</span>
+            <i class="fas fa-info-circle"></i>
         </div>
 
-        <!-- Info Modal -->
+        <!-- Modal Explanation -->
         <div id="info-modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -86,10 +105,10 @@
                         percentage.</li>
                     <li><strong>Gas (RAW):</strong> Raw gas value from the
                         MQ-135 sensor.</li>
-                    <li><strong>Gas (Compensated):</strong> Gas value adjusted
-                        based on temperature and humidity.</li>
+                    <li><strong>Gas (Compensated):</strong> Gas value
+                        compensated based on temperature and humidity.</li>
                     <li><strong>Air Quality:</strong> Air quality status based
-                        on the compensated gas value.</li>
+                        on compensated gas value.</li>
                 </ul>
             </div>
         </div>
