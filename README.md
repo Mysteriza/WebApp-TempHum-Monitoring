@@ -1,7 +1,7 @@
-# IoT Monitoring - Temperature & Humidity
+# IoT Monitoring - Temperature & Humidity + Gas (using MQ-135 Sensor)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Mysteriza/WebApp-TempHum-Monitoring)
 
-A simple real-time web-based monitoring system for temperature and humidity, collected from an ESP8266 with a DHT22 sensor and integrated with Blynk.
+A simple real-time web-based monitoring system for gas, temperature and humidity, collected from an ESP8266 with a DHT22 and MQ-135 sensor, integrated with Blynk.
 
 ## [Arduino Code | ESP8266 + DHT22 + Blynk](https://github.com/Mysteriza/DHT22-Blynk-Monitoring)
 
@@ -20,12 +20,12 @@ A simple real-time web-based monitoring system for temperature and humidity, col
 
 ## Screenshots
 ### Light Mode
-<img src="https://github.com/user-attachments/assets/81620df0-86e8-45f7-8c1c-de49a2c07bc3" alt="Light Mode" width="710" />
-<img src="https://github.com/user-attachments/assets/020ca4b7-f67e-4d07-a0de-2bbc0c26058b" alt="Mobile Light Mode" width="200" />
+<img src="https://github.com/user-attachments/assets/0ea4686a-8605-48bc-899c-d743b134f1b1" alt="Light Mode" width="710" />
+<img src="https://github.com/user-attachments/assets/a6059755-dc1f-4f86-8c74-d87082c3e217" alt="Mobile Light Mode" width="200" />
 
 ### Dark Mode
-<img src="https://github.com/user-attachments/assets/4743a873-6854-4987-8ccc-ac2beb382b34" alt="Dark Mode" width="710" />
-<img src="https://github.com/user-attachments/assets/051e7a70-b8ce-43a0-97b3-7471c5c5ee49" alt="Mobile Dark Mode" width="200" />
+<img src="https://github.com/user-attachments/assets/93cf4264-5f3f-4736-ab49-e1106465a78f" alt="Dark Mode" width="710" />
+<img src="https://github.com/user-attachments/assets/8d1438e3-604a-46a6-b76c-fa5e26bad874" alt="Mobile Dark Mode" width="200" />
 
 ---
 
