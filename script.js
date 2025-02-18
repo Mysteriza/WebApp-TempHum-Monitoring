@@ -66,9 +66,9 @@ function updateTemperatureColor(temperature) {
   );
   if (temperature < 20) {
     temperatureBox.classList.add("temperature-cold");
-  } else if (temperature >= 20 && temperature < 25) {
+  } else if (temperature >= 20 && temperature < 27) {
     temperatureBox.classList.add("temperature-cool");
-  } else if (temperature >= 25 && temperature < 30) {
+  } else if (temperature >= 27 && temperature < 30) {
     temperatureBox.classList.add("temperature-warm");
   } else {
     temperatureBox.classList.add("temperature-hot");
