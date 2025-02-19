@@ -201,7 +201,7 @@ function updateUI(temperature, humidity, rawGas, compensatedGas) {
   gasCompensatedElement.textContent = `${compensatedGas.toFixed(1)} ppm`;
   airQualityStatusElement.textContent = airQualityStatus;
 
-  updateLastUpdated();
+  updateLastUpdated(); // Update "Last Updated" time
   updateTemperatureColor(temperature);
   updateHumidityColor(humidity);
   updateGasRawColor(rawGas);
@@ -253,6 +253,15 @@ async function fetchData() {
   }
 }
 
+// Initial fetch
+fetchData();
+
+// Auto-refresh every 30 seconds (30000 milliseconds)
+setInterval(fetchData, 30000);
+
+// Event Listener for Refresh Button
+refreshButton.addEventListener("click", fetchData);
+
 // Function to update real-time clock
 function updateClock() {
   const now = new Date();
@@ -269,6 +278,12 @@ function updateClock() {
   dateElement.textContent = date;
 }
 
+// Update clock every second
+setInterval(updateClock, 1000);
+
+// Initial clock update
+updateClock();
+
 // Function to toggle dark mode
 function toggleDarkMode() {
   const isDarkMode = document.body.classList.toggle("dark-mode");
@@ -284,18 +299,9 @@ function checkDarkModePreference() {
   }
 }
 
-// Event Listener for Refresh Button
-refreshButton.addEventListener("click", fetchData);
-
 // Event Listener for Dark Mode Switch
 darkModeSwitch.addEventListener("change", toggleDarkMode);
 
-// Update clock every second
-setInterval(updateClock, 1000);
-
-// Initial fetch
-fetchData();
-updateClock();
 checkDarkModePreference();
 
 // Modal Logic
