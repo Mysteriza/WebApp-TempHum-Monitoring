@@ -256,8 +256,8 @@ async function fetchData() {
 // Initial fetch
 fetchData();
 
-// Auto-refresh every 30 seconds (30000 milliseconds)
-setInterval(fetchData, 30000);
+// Auto-refresh every 10 seconds (10000 milliseconds)
+setInterval(fetchData, 10000);
 
 // Event Listener for Refresh Button
 refreshButton.addEventListener("click", fetchData);
